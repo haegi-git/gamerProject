@@ -1,0 +1,57 @@
+.section{
+    width: 100%;
+    display: flex;
+}
+.section_left{
+    width: 70%;
+    background-color: gray;
+}
+
+.section_left > .section_left_week{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.section_right{
+    width: 30%;
+    background-color: green;
+}
+.section_right > .section_login{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+.section_right > .section_login > .login_form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    padding-top: 30px;
+}
+.section_right > .section_login > .login_form input{
+    border: none;
+    outline: none;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.section_right > .section_login > .section_help{
+    margin-top:15px;
+}
+.section_right > .section_login > .section_help > a{
+    color:black;
+}
+
+
+.section_left_board{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+.section_left_board > .section_left_card{
+    text-align: center;
+}

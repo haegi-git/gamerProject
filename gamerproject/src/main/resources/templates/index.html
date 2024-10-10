@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/style.css" rel="stylesheet">
 </head>
 <body>
 
-  <h1>
-    메인페이지
-  </h1>
+    <div th:replace="~{nav.html::nav}"></div>
+    <div class="section">
+        <div class="section_left">
+            <h1>
+                그 뭐냐.. 게시물공간
+            </h1>
+            <div class="section_left_week">
+                <div class="section_left_card">
+                    <img src="#" alt="section_card_img" onerror="this.src='https://placehold.co/300'">
+                    <h3>
+                        제목
+                    </h3>
+                    <p>2024-10-10</p>
+                </div>
+                <div class="section_left_card">
+                    <img src="#" alt="section_card_img" onerror="this.src='https://placehold.co/300'">
+                    <h3>
+                        제목
+                    </h3>
+                    <p>2024-10-10</p>
+                </div>
+                <div class="section_left_card">
+                    <img src="#" alt="section_card_img" onerror="this.src='https://placehold.co/300'">
+                    <h3>
+                    제목
+                    </h3>
+                    <p>2024-10-10</p>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="~{login.html::login}"></div>
+
+
+    </div>
 
 </body>
 </html>

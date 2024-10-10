@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div th:replace="~{nav.html::nav}"></div>
+
+<h1>글 쓰기</h1>
+<form th:action="@{/update/boasting/{id}(id=${item.id})}" method="POST" class="write_form">
+  <label>
+    제목
+    <input th:value="${item.title}" name="title" placeholder="제목을 입력하세요">
+  </label>
+  <label>
+    본문
+    <input th:value="${item.contents}" name="contents" placeholder="내용을 입력하세요">
+  </label>
+  <label>
+    이미지
+    <input th:value="${item.imgUrl}" name="imgUrl" type="text">
+  </label>
+
+  <label>
+    이미지
+    <input name="img" type="file">
+  </label>
+  <input type="submit" value="수정하기">
+</form>
+
+</body>
+</html>

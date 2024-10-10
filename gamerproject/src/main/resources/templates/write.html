@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div th:replace="~{nav.html::nav}"></div>
+
+<h1>글 쓰기</h1>
+    <form action="/write/boasting" method="POST" class="write_form">
+        <label>
+            제목
+            <input name="title" placeholder="제목을 입력하세요">
+        </label>
+        <label>
+            본문
+            <input name="contents" placeholder="내용을 입력하세요">
+        </label>
+        <label>
+            이미지
+            <input name="imgUrl" type="text">
+        </label>
+
+        <label>
+            이미지
+            <input name="img" type="file">
+        </label>
+        <input type="submit" value="글쓰기">
+    </form>
+
+</body>
+</html>

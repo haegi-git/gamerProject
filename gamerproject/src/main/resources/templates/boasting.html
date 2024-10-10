@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{nav.html::nav}"></div>
+
+    <div class="section">
+        <div class="section_left">
+            <h1>
+                자랑 게시판
+            </h1>
+            <div class="section_left_board">
+
+                <div class="section_left_card"
+                        th:each="i : ${items}">
+                    <a th:href="${'detail/'+i.id}"><img src="#" alt="section_card_img" onerror="this.src='https://placehold.co/300'"></a>
+                    <h3 th:text="${i.title}">
+                        제목
+                    </h3>
+<!--                    <p th:="${#dates.format(i.write_date, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
+                </div>
+
+            </div>
+
+            <div class="pagination">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+
+                </ul>
+                <a href="/write">글쓰기</a>
+            </div>
+
+        </div>
+
+        <div th:replace="~{login.html::login}"></div>
+
+    </div>
+
+    <script>
+        function redirectToDetail(element) {
+            const id = element.getAttribute('i.id');
+            window.location = `@{/detail/${id}}`;
+            console.log(id)
+        }
+    </script>
+
+</body>
+</html>

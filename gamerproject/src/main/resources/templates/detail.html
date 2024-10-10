@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div th:replace="~{nav.html::nav}"></div>
+  <div class="section">
+    <div class="section_left">
+      <h1 th:text="${item.title}"></h1>
+      <p th:text="${item.contents}">본문</p>
+      <a th:href="'/update/'+${item.id}">수정하기</a>
+    </div>
+    <div th:replace="~{login.html::login}"></div>
+
+
+  </div>
+
+</body>
+</html>

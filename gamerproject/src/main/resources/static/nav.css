@@ -1,0 +1,18 @@
+.nav{
+    width: 100%;
+}
+.nav > .nav_ul{
+    margin:auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav > .nav_ul > .nav_li{
+    margin:5px 10px;
+    padding: 5px;
+}
+.nav > .nav_ul > .nav_logo{
+    font-size:25px;
+    font-weight: bold;
+}
