@@ -1,0 +1,40 @@
+/* Container for the interest checkboxes */
+.interests-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+/* Hide the actual checkbox */
+.interest input[type="checkbox"] {
+}
+
+/* Style the label as a button */
+.interest {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #3e8e41;
+    color: white;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Change background when hovered */
+.interest:hover {
+    background-color: #2f6e31;
+}
+
+/* Change background when the checkbox is checked */
+.interest input[type="checkbox"]:checked + .interest {
+    background-color: #f56262;
+}
+
+/* Add shadow effect for selected labels */
+.interest input[type="checkbox"]:checked + .interest {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

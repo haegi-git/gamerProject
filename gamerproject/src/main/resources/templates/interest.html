@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="interest_container" th:fragment="interest">
+    <input id="selectedInterests" type="text">
+    <label class="interest" for="overwatch">
+        오버워치
+        <input
+                value="오버워치"
+                id="overwatch"
+                name="interest"
+                type="checkbox"
+        onchange="updateInterests()">
+    </label>
+    <label class="interest" for="steam">
+        스팀
+        <input value="스팀" id="steam" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="lol">
+        리그오브레전드
+        <input value="리그오브레전드" id="lol" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="valorant" >
+        발로란트
+        <input value="발로란트" id="valorant" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="apex">
+        에이펙스 레전드
+        <input value="에이펙스레전드" id="apex" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="pubg">
+        배틀그라운드
+        <input value="배틀그라운드" id="pubg" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="ps4">
+        PS4
+        <input value="ps4" id="ps4" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="nintendo">
+        닌텐도
+        <input value="닌텐도" id="nintendo" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="minecraft">
+        마인크래프트
+        <input value="마인크래프트" id="minecraft" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    <label class="interest" for="lostark">
+        로스트아크
+        <input value="로스트아크" id="lostark" name="interest" type="checkbox" onchange="updateInterests()">
+    </label>
+    </div>
+
+</body>
+</html>

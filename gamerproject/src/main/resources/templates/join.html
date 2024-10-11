@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="~{nav.html::nav}" ></div>
+
+    <div class="join">
+        <h1>회원가입</h1>
+        <form action="/join/member" method="POST" th:object="${memberDto}">
+            <label for="userid">
+                <div th:if="${#fields.hasErrors('userid')}" style="color:red;">
+                    <span th:errors="*{userid}"></span> <!-- 오류 메시지를 여기에 출력 -->
+                </div>
+                아이디
+                <input type="text" name="userid" id="userid" th:value="${memberDto.userid}" placeholder="아이디를 입력해주세요.">
+            </label>
+            <label for="password">
+                <div th:if="${#fields.hasErrors('password')}" style="color:red;">
+                    <span th:errors="*{password}"></span> <!-- 오류 메시지를 여기에 출력 -->
+                </div>
+                비밀번호
+                <input type="password" name="password" id="password" th:value="${memberDto.password}" placeholder="비밀번호를 입력해주세요.">
+            </label>
+            <label for="displayName">
+                <div th:if="${#fields.hasErrors('displayName')}" style="color:red;">
+                    <span th:errors="*{displayName}"></span> <!-- 오류 메시지를 여기에 출력 -->
+                </div>
+                닉네임
+                <input type="text" name="displayName" id="displayName" th:value="${memberDto.displayName}" placeholder="닉네임을 입력해주세요.">
+            </label>
+            <label for="email">
+                <div th:if="${#fields.hasErrors('email')}" style="color:red;">
+                    <span th:errors="*{email}"></span> <!-- 오류 메시지를 여기에 출력 -->
+                </div>
+                이메일
+                <input type="text" name="email" id="email" th:value="${memberDto.email}" placeholder="user@user.com">
+            </label>
+
+            <div th:replace="~{interest.html::interest}" ></div>
+
+            <input type="submit" value="가입하기">
+        </form>
+    </div>
+    <script src="/interest.js"></script>
+</body>
+</html>

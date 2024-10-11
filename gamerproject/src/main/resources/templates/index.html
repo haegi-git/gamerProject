@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,6 +9,7 @@
 <body>
 
     <div th:replace="~{nav.html::nav}"></div>
+    <a href="/logout">로그아웃</a>
     <div class="section">
         <div class="section_left">
             <h1>
@@ -38,10 +40,8 @@
             </div>
         </div>
 
-        <div th:replace="~{login.html::login}"></div>
-
+        <div th:replace="login.html :: login(${member})"></div>
 
     </div>
-
 </body>
 </html>

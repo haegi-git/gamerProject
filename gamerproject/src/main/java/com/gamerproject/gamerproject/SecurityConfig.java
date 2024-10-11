@@ -14,6 +14,7 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -34,8 +35,6 @@ public class SecurityConfig {
 //                    -> csrf.csrfTokenRepository(csrfTokenRepository())
 //                .ignoringRequestMatchers("/login")
 //        );
-
-
         http.csrf((csrf)-> csrf.disable());
         http.authorizeHttpRequests((authorize) ->
               authorize.requestMatchers("/**").permitAll()
@@ -48,7 +47,7 @@ public class SecurityConfig {
                 // /login?error
         );
 
-        http.logout(logout -> logout.logoutUrl("/logout"));
+        http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/"));
 
 
         return http.build();
