@@ -88,4 +88,20 @@ public class ItemController {
 
         return "redirect:/boasting";
     }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        Optional<Item> item = itemRepository.findById(id);
+        if(item.isPresent()) {
+            itemRepository.delete(item.get());
+            return "redirect:/";
+        }else {
+            return "redirect:/error";
+        }
+    }
+
+    @GetMapping("/join")
+    public String join(Model model) {
+        return "join.html";
+    }
 }

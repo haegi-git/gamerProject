@@ -13,6 +13,9 @@
       <h1 th:text="${item.title}"></h1>
       <p th:text="${item.contents}">본문</p>
       <a th:href="'/update/'+${item.id}">수정하기</a>
+      <form th:action="'/delete/'+${item.id}" method="POST">
+        <input type="submit" value="삭제하기">
+      </form>
     </div>
     <div th:replace="~{login.html::login}"></div>
 
