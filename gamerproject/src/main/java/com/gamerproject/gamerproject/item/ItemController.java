@@ -1,6 +1,5 @@
 package com.gamerproject.gamerproject.item;
 
-import com.gamerproject.gamerproject.member.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,17 +88,4 @@ public class ItemController {
 
         return "redirect:/boasting";
     }
-
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        Optional<Item> item = itemRepository.findById(id);
-        if(item.isPresent()) {
-            itemRepository.delete(item.get());
-            return "redirect:/";
-        }else {
-            return "redirect:/error";
-        }
-    }
-
-
 }
