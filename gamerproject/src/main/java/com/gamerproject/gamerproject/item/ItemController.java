@@ -1,20 +1,25 @@
 package com.gamerproject.gamerproject.item;
 
+import com.gamerproject.gamerproject.ResourceNotFoundException;
+import com.gamerproject.gamerproject.comment.Comment;
+import com.gamerproject.gamerproject.comment.CommentDto;
+import com.gamerproject.gamerproject.comment.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
 public class ItemController {
 
     private final ItemRepository itemRepository;
+    private final ImageRepository imageRepository;
+    private final CommentRepository commentRepository;
+    private final ItemService itemService;
+    private final S3Service s3Service;
 
     @GetMapping("/")
     public String index() {
@@ -34,58 +39,54 @@ public class ItemController {
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        Optional<Item> item = itemRepository.findById(id);
-        if(item.isPresent()) {
-            model.addAttribute("item", item.get());
-            return "detail.html";
-        }else{
-            return "error.html";
-        }
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Item not found")); // 아이템이 없을 경우 예외 처리
+        List<Comment> comments = commentRepository.findByItemId(id);
+        model.addAttribute("item", item); // 모델에 아이템 추가
+        model.addAttribute("commentsItem", comments);
+        model.addAttribute("commentDto", new CommentDto());
+
+        return "detail.html";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
+
         Optional<Item> item = itemRepository.findById(id);
-        if(item.isPresent()) {
-            model.addAttribute("item", item.get());
-            return "update.html";
-        }else{
-            return "error.html";
-        }
+
+        model.addAttribute("item", item); // 모델에 아이템 추가
+
+        return "update.html";
     }
     @PostMapping("/update/boasting/{id}")
     public String updateBoasting(@PathVariable Long id, Model model,
-                                 String title,
-                                 String contents,
-                                 String imgUrl) {
-        Optional<Item> optionalItem = itemRepository.findById(id);
+                                 ItemDto itemDto
+    ) throws Exception {
 
-        if (optionalItem.isPresent()) {
-            Item item = optionalItem.get();
-            item.setTitle(title);       // 기존 객체의 title 업데이트
-            item.setContents(contents);  // 기존 객체의 contents 업데이트
-            item.setImgUrl(imgUrl);     // 기존 객체의 imgUrl 업데이트
+        model.addAttribute("item", itemRepository.findById(id).get());
+        itemService.updateItem(id,itemDto);
 
-            itemRepository.save(item);
-            return "redirect:/boasting";
-        } else {
-            return "redirect:/error";
-        }
+        return "redirect:/boasting";
 
     }
 
     @PostMapping("/write/boasting")
-    public String writeBoasting(String title,
-                                String contents,
-                                String imgUrl) {
+    public String writeBoasting(ItemDto itemDto
+                                ) throws Exception {
 
-        Item item = new Item();
-        item.setTitle(title);
-        item.setContents(contents);
-        item.setImgUrl(imgUrl);
-        item.setWriteDate(new Date());
-        itemRepository.save(item);
+        itemService.addItem(itemDto);
 
         return "redirect:/boasting";
     }
+
+    @GetMapping("/write-imgurl")
+    @ResponseBody
+    public String writeImgurl(@RequestParam String filename) {
+        var result = s3Service.createPreSignedUrl("test/" + filename);
+        System.out.println(result);
+        return result;
+
+    }
+
+
 }

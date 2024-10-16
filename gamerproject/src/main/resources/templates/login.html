@@ -31,7 +31,11 @@
 </div>
 
     <div th:if="${member != null}">
-        <h1>로그인됨</h1>
+        <div class="userinfo">
+            <h2>환영합니다.</h2>
+            <p th:text="${member.displayName}+님"></p>
+            <a href="/mypage"></a>
+        </div>
     </div>
 </section>
 

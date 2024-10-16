@@ -1,14 +1,12 @@
 package com.gamerproject.gamerproject.item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,9 +17,10 @@ public class Item {
     private Long id;
 
     private String title;
-    private String Contents;
-    private String imgUrl;
-    private Date writeDate;
+    private String contents;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date writeDate = new Date();
 
-
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images; // 여러 이미지를 저장할 리스트
 }

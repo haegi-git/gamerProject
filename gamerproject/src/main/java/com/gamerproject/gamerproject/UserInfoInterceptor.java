@@ -17,6 +17,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member"); // 세션에서 Member 객체 가져오기
+        System.out.println(member);
         request.setAttribute("member", member); // 사용자 정보를 request에 설정
         return true; // 요청을 계속 진행하도록 허용
     }

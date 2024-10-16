@@ -27,7 +27,7 @@ public class MemberController {
                              BindingResult bindingResult,
                              String interest) {
         if(bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
+            System.out.println("회원가입에러"+bindingResult.getAllErrors());
             return "/join";
         }
 

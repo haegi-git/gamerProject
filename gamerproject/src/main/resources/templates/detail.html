@@ -11,15 +11,43 @@
   <div class="section">
     <div class="section_left">
       <h1 th:text="${item.title}"></h1>
-      <p th:text="${item.contents}">본문</p>
+      <p th:utext="${item.contents}">본문</p>
       <a th:href="'/update/'+${item.id}">수정하기</a>
+
       <form th:action="'/delete/'+${item.id}" method="POST">
         <input type="submit" value="삭제하기">
       </form>
+
+
     </div>
+
+
+
+
+
+
     <div th:replace="login.html :: login(${member})"></div>
 
 
+  </div> <!-- 섹샨 -->
+
+  <div class="comment">
+    <form th:action="@{'/comment/'+${item.id}}" method="POST" th:object="${commentDto}">
+      <label>
+        <div th:if="${#fields.hasErrors('comment')}" style="color:red;">
+          <span th:errors="*{comment}" th:text="${errors}"></span> <!-- 오류 메시지를 여기에 출력 -->
+        </div>
+        <textarea name="comment" placeholder="댓글을 입력하세요."></textarea>
+      </label>
+      <input id="comment_submit" type="submit" value="V">
+    </form>
+    <ul>
+      <li th:each="comments : ${commentsItem}">
+        <div><a th:text="${comments.displayName}">유저</a> <span>2024-10-16</span></div>
+        <span th:text="${comments.comment}">댓글</span>
+      </li>
+
+    </ul>
   </div>
 
 </body>

@@ -3,6 +3,8 @@
 @import url(pagination.css);
 @import url(interest.css);
 @import url(join.css);
+@import url(write.css);
+@import url(comment.css);
 
 *{
     margin:0;

@@ -1,5 +1,7 @@
 .nav{
     width: 100%;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 20px;
 }
 .nav > .nav_ul{
     margin:auto;

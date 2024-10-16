@@ -35,9 +35,16 @@ public class SecurityConfig {
 //                    -> csrf.csrfTokenRepository(csrfTokenRepository())
 //                .ignoringRequestMatchers("/login")
 //        );
+        http.csrf(csrf -> csrf
+                .csrfTokenRepository(csrfTokenRepository())
+                .ignoringRequestMatchers("/**") // CSRF 검사에서 제외할 경로
+        );
+
         http.csrf((csrf)-> csrf.disable());
         http.authorizeHttpRequests((authorize) ->
               authorize.requestMatchers("/**").permitAll()
+                      .requestMatchers("/comment").authenticated()
+                      .anyRequest().permitAll()
         );
 
 
